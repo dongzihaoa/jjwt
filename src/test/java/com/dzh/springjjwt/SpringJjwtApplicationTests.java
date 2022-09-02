@@ -22,7 +22,7 @@ class SpringJjwtApplicationTests {
                 .setIssuedAt(new Date())
                 .claim("role","管理员") //设置自定义键值对
                 //设置过期时间
-                .setExpiration(new Date(System.currentTimeMillis() + 30 * 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + 600 * 1000))
                 .signWith(SignatureAlgorithm.HS256, "dzhAdmin");
 
         //创建token
@@ -33,12 +33,13 @@ class SpringJjwtApplicationTests {
     @Test
     void parseToken(){
         String token =
-                "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMDAxIiwic3ViIjoi6JGj5a2Q6LGqIiwiaWF0IjoxNjYyMDg0OTMwLCJyb2xlIjoi566h55CG5ZGYIiwiZXhwIjoxNjYyMDg0OTYwfQ.aMAuyozJ1q5K5IP-X2Y-4Aa0Yoj7CW2BNxvfquyyP3U";
+                "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMDAxIiwic3ViIjoi6JGj5a2Q6LGqIiwiaWF0IjoxNjYyMDg1MTc2LCJyb2xlIjoi566h55CG5ZGYIiwiZXhwIjoxNjYyMDg1Nzc2fQ.zTQDgsC1sc7FWSBo81FcjKT1QLIvKVh-AWYQaPb-X4w";
         Claims claims = Jwts.parser().setSigningKey("dzhAdmin").parseClaimsJws(token).getBody();
 
         System.out.println(claims.getId());
         System.out.println(claims.getSubject());
         System.out.println(claims.getIssuedAt());
+        System.out.println(claims.get("role"));
 
     }
 
