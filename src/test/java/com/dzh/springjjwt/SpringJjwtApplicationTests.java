@@ -20,6 +20,7 @@ class SpringJjwtApplicationTests {
                 .setId("1001")  //设置id
                 .setSubject("董子豪")  //自定义数据
                 .setIssuedAt(new Date())
+
                 .signWith(SignatureAlgorithm.HS256, "dzhAdmin");
 
         //创建token
